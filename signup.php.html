@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Signup Box */
+        .signup-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            text-align: left;
+            overflow: hidden;
+            border: 1px solid #c0c0c0;
+        }
+
+       
+
+        /* Logo */
+        .logo {
+            width: 50px;
+        }
+
+        /* Close Button */
+        .header {
+    background: linear-gradient(to bottom, #e0e8f0, #c8d8f0);
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    border-bottom: 1px solid #c0c0c0;
+    display: flex;
+    justify-content: center; /* Centers the text */
+    align-items: center;
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px; /* Moves close button to the right */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #333;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+        .close-btn:hover {
+            color: #555;
+        }
+
+        /* Form Area */
+        .form-content {
+            padding: 20px;
+        }
+
+        /* Top Section (Now Text Left, Logo Right) */
+        .top-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .top-links p {
+            font-size: 14px;
+            color: #333;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Labels & Inputs */
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #444;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* Terms Checkbox */
+        .terms {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .terms input {
+            margin-right: 5px;
+        }
+
+        /* Signup Button */
+        .signup-btn {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to bottom, #84b6f4, #5a9ff2);
+            border: 1px solid #5a9ff2;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .signup-btn:hover {
+            background: linear-gradient(to bottom, #6faefb, #4285f4);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(to bottom, #e0e8f0, #c8d8f0);
+            padding: 10px;
+            text-align: center;
+            border-top: 1px solid #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-container">
+        <!-- Header -->
+        <div class="header">
+            Signup
+            <button class="close-btn" onclick="closeForm()">×</button>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="form-content">
+            <div class="top-links">
+                <p><strong>Already have an account?</strong> <a href="#">Login</a></p>
+                <img src="a2.png" alt="Logo" class="logo">
+            </div>
+
+            <form action="#" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" required>
+
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" required>
+
+                <div class="terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I have read the Grooveshark Terms of Service. (<a href="#">opens in a new window</a>)</label>
+                </div>
+                <form action="signup.php" method="post">
+                    <!-- Form fields remain the same -->
+                </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer"></div>
+    </div>
+
+    <script>
+        function closeForm() {
+            alert("Form closed!"); // Replace with actual close logic
+        }
+    </script>
+
+</body>
+
+</html>
+<?php
+// Database configuration
+$host = 'localhost';
+$dbname = 'my_database';
+$username = 'root';
+$password = '';
+
+// Connect to the database
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
+}
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve form data
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+    $email = $_POST['email'];
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+
+    // Validate passwords match
+    if ($password !== $confirm_password) {
+        die("Passwords do not match.");
+    }
+
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert user into the database
+    try {
+        $stmt = $pdo->prepare("INSERT INTO users (username, password, email, first_name, last_name) VALUES (:username, :password, :email, :first_name, :last_name)");
+        $stmt->execute([
+            ':username' => $username,
+            ':password' => $hashed_password,
+            ':email' => $email,
+            ':first_name' => $first_name,
+            ':last_name' => $last_name
+        ]);
+
+        echo "Signup successful!";
+    } catch (PDOException $e) {
+        die("Error: " . $e->getMessage());
+    }
+}
+?>
